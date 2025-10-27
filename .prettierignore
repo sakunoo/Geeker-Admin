@@ -7,3 +7,4 @@
 
 /public/*
 stats.html
+/src/components/ProTable/index.vue
