@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang="ts" name="pie">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const pieData = [
   { value: 5000, name: "Gitee 访问量" },
   { value: 5000, name: "GitHub 访问量" }
-];
+]
 
 const option: ECOption = {
   title: {
@@ -45,17 +45,17 @@ const option: ECOption = {
       fontWeight: 500
     },
     formatter: function (name: string) {
-      let dataCopy = "";
+      let dataCopy = ""
       for (let i = 0; i < pieData.length; i++) {
         if (pieData[i].name == name && pieData[i].value >= 10000) {
-          dataCopy = (pieData[i].value / 10000).toFixed(2);
-          return name + "      " + dataCopy + "w";
+          dataCopy = (pieData[i].value / 10000).toFixed(2)
+          return name + "      " + dataCopy + "w"
         } else if (pieData[i].name == name) {
-          dataCopy = pieData[i].value + "";
-          return name + "      " + dataCopy;
+          dataCopy = pieData[i].value + ""
+          return name + "      " + dataCopy
         }
       }
-      return "";
+      return ""
     }
   },
   series: [
@@ -120,7 +120,7 @@ const option: ECOption = {
       ]
     }
   ]
-};
+}
 </script>
 
 <style lang="scss" scoped>

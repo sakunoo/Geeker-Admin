@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
-import { AuthState } from "@/stores/interface";
-import { getAuthButtonListApi, getAuthMenuListApi } from "@/api/modules/login";
-import { getFlatMenuList, getShowMenuList, getAllBreadcrumbList } from "@/utils";
+import { defineStore } from "pinia"
+import { AuthState } from "@/stores/interface"
+import { getAuthButtonListApi, getAuthMenuListApi } from "@/api/modules/login"
+import { getFlatMenuList, getShowMenuList, getAllBreadcrumbList } from "@/utils"
 
 export const useAuthStore = defineStore({
   id: "geeker-auth",
@@ -28,17 +28,17 @@ export const useAuthStore = defineStore({
   actions: {
     // Get AuthButtonList
     async getAuthButtonList() {
-      const { data } = await getAuthButtonListApi();
-      this.authButtonList = data;
+      const { data } = await getAuthButtonListApi()
+      this.authButtonList = data
     },
     // Get AuthMenuList
     async getAuthMenuList() {
-      const { data } = await getAuthMenuListApi();
-      this.authMenuList = data;
+      const { data } = await getAuthMenuListApi()
+      this.authMenuList = data
     },
     // Set RouteName
     async setRouteName(name: string) {
-      this.routeName = name;
+      this.routeName = name
     }
   }
-});
+})

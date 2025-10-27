@@ -45,12 +45,12 @@
 </template>
 
 <script setup lang="ts" name="dynamicForm">
-import { reactive, ref } from "vue";
-import { checkPhoneNumber } from "@/utils/eleValidate";
-import type { FormInstance, FormRules } from "element-plus";
-import { ElMessage } from "element-plus";
+import { reactive, ref } from "vue"
+import { checkPhoneNumber } from "@/utils/eleValidate"
+import type { FormInstance, FormRules } from "element-plus"
+import { ElMessage } from "element-plus"
 
-const ruleFormRef = ref<FormInstance>();
+const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
   name: "Geeker-Admin",
   phone: "",
@@ -60,7 +60,7 @@ const ruleForm = reactive({
   delivery: false,
   resource: "",
   desc: ""
-});
+})
 
 const rules = reactive<FormRules>({
   name: [
@@ -99,23 +99,23 @@ const rules = reactive<FormRules>({
     }
   ],
   desc: [{ required: true, message: "Please input activity form", trigger: "blur" }]
-});
+})
 
 const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
+  if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      ElMessage.success("提交的数据为 : " + JSON.stringify(ruleForm));
+      ElMessage.success("提交的数据为 : " + JSON.stringify(ruleForm))
     } else {
-      console.log("error submit!", fields);
+      console.log("error submit!", fields)
     }
-  });
-};
+  })
+}
 
 const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.resetFields();
-};
+  if (!formEl) return
+  formEl.resetFields()
+}
 </script>
 
 <style scoped lang="scss">

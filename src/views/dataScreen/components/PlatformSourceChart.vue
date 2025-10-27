@@ -6,13 +6,13 @@
 </template>
 
 <script setup lang="ts">
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
 
 interface ChartProp {
-  name: string;
-  value: number;
-  percentage: string;
+  name: string
+  value: number
+  percentage: string
 }
 
 const data = [
@@ -20,7 +20,7 @@ const data = [
   { value: 10, name: "携程", percentage: "10%" },
   { value: 20, name: "飞猪", percentage: "20%" },
   { value: 30, name: "其他渠道", percentage: "30%" }
-];
+]
 
 const option: ECOption = {
   grid: {
@@ -46,13 +46,13 @@ const option: ECOption = {
     },
     itemGap: 20,
     formatter: function (name: string) {
-      let text = "";
+      let text = ""
       data.forEach((val: ChartProp) => {
         if (val.name === name) {
-          text = name + " --- " + val.percentage;
+          text = name + " --- " + val.percentage
         }
-      });
-      return text;
+      })
+      return text
     },
     data: data.map((val: ChartProp) => val.name)
   },
@@ -179,7 +179,7 @@ const option: ECOption = {
               borderWidth: 0,
               borderColor: "rgba(0,0,0,0)"
             }
-          };
+          }
         } else {
           return {
             name: (index + 1).toString(),
@@ -189,7 +189,7 @@ const option: ECOption = {
               borderWidth: 0,
               borderColor: "rgba(0,0,0,0)"
             }
-          };
+          }
         }
       })
     },
@@ -280,7 +280,7 @@ const option: ECOption = {
       ]
     }
   ]
-};
+}
 </script>
 <style lang="scss" scoped>
 .echarts {

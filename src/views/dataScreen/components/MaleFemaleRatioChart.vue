@@ -19,18 +19,18 @@
 </template>
 
 <script setup lang="ts">
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
 
 interface ChartProp {
-  man: number;
-  woman: number;
+  man: number
+  woman: number
 }
 
 let data: ChartProp = {
   man: 0.6,
   woman: 0.4
-};
+}
 
 const option: ECOption = {
   xAxis: {
@@ -103,7 +103,7 @@ const option: ECOption = {
         offset: [0, -20],
         fontSize: 12,
         formatter: () => {
-          return `男士 ${data.man * 100}%`;
+          return `男士 ${data.man * 100}%`
         }
       }
     },
@@ -123,12 +123,12 @@ const option: ECOption = {
         offset: [0, -20],
         fontSize: 12,
         formatter: () => {
-          return `女士 ${data.woman * 100}%`;
+          return `女士 ${data.woman * 100}%`
         }
       }
     }
   ]
-};
+}
 </script>
 <style lang="scss" scoped>
 .ratio-main {

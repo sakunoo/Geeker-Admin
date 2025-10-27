@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts" name="pieChart">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const option: ECOption = {
   tooltip: {
@@ -60,7 +60,7 @@ const option: ECOption = {
       ]
     }
   ]
-};
+}
 </script>
 
 <style scoped lang="scss">

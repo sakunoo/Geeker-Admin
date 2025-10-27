@@ -132,18 +132,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useTheme } from "@/hooks/useTheme";
-import { useGlobalStore } from "@/stores/modules/global";
-import { LayoutType } from "@/stores/interface";
-import { DEFAULT_PRIMARY } from "@/config";
-import mittBus from "@/utils/mittBus";
-import SwitchDark from "@/components/SwitchDark/index.vue";
+import { ref } from "vue"
+import { storeToRefs } from "pinia"
+import { useTheme } from "@/hooks/useTheme"
+import { useGlobalStore } from "@/stores/modules/global"
+import { LayoutType } from "@/stores/interface"
+import { DEFAULT_PRIMARY } from "@/config"
+import mittBus from "@/utils/mittBus"
+import SwitchDark from "@/components/SwitchDark/index.vue"
 
-const { changePrimary, changeGreyOrWeak, setAsideTheme, setHeaderTheme } = useTheme();
+const { changePrimary, changeGreyOrWeak, setAsideTheme, setHeaderTheme } = useTheme()
 
-const globalStore = useGlobalStore();
+const globalStore = useGlobalStore()
 const {
   layout,
   primary,
@@ -159,7 +159,7 @@ const {
   tabs,
   tabsIcon,
   footer
-} = storeToRefs(globalStore);
+} = storeToRefs(globalStore)
 
 // 预定义主题颜色
 const colorList = [
@@ -173,17 +173,17 @@ const colorList = [
   "#fd726d",
   "#f39c12",
   "#9b59b6"
-];
+]
 
 // 设置布局方式
 const setLayout = (val: LayoutType) => {
-  globalStore.setGlobalState("layout", val);
-  setAsideTheme();
-};
+  globalStore.setGlobalState("layout", val)
+  setAsideTheme()
+}
 
 // 打开主题设置
-const drawerVisible = ref(false);
-mittBus.on("openThemeDrawer", () => (drawerVisible.value = true));
+const drawerVisible = ref(false)
+mittBus.on("openThemeDrawer", () => (drawerVisible.value = true))
 </script>
 
 <style scoped lang="scss">

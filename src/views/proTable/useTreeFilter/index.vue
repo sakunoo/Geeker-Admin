@@ -5,16 +5,14 @@
       title="部门列表(单选)"
       :request-api="getUserDepartment"
       :default-value="initParam.departmentId"
-      @change="changeTreeFilter"
-    />
+      @change="changeTreeFilter" />
     <div class="table-box">
       <ProTable
         ref="proTable"
         :columns="columns"
         :request-api="getUserList"
         :init-param="initParam"
-        :search-col="{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
-      >
+        :search-col="{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }">
         <!-- 表格 header 按钮 -->
         <template #tableHeader>
           <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
@@ -36,18 +34,18 @@
   </div>
 </template>
 <script setup lang="ts" name="useTreeFilter">
-import { ref, reactive } from "vue";
-import { User } from "@/api/interface";
-import { useRouter } from "vue-router";
-import { ElMessage, ElMessageBox } from "element-plus";
-import { useHandleData } from "@/hooks/useHandleData";
-import { useDownload } from "@/hooks/useDownload";
-import ProTable from "@/components/ProTable/index.vue";
-import TreeFilter from "@/components/TreeFilter/index.vue";
-import ImportExcel from "@/components/ImportExcel/index.vue";
-import UserDrawer from "@/views/proTable/components/UserDrawer.vue";
-import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from "@element-plus/icons-vue";
+import { ref, reactive } from "vue"
+import { User } from "@/api/interface"
+import { useRouter } from "vue-router"
+import { ElMessage, ElMessageBox } from "element-plus"
+import { useHandleData } from "@/hooks/useHandleData"
+import { useDownload } from "@/hooks/useDownload"
+import ProTable from "@/components/ProTable/index.vue"
+import TreeFilter from "@/components/TreeFilter/index.vue"
+import ImportExcel from "@/components/ImportExcel/index.vue"
+import UserDrawer from "@/views/proTable/components/UserDrawer.vue"
+import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface"
+import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from "@element-plus/icons-vue"
 import {
   getUserList,
   deleteUser,
@@ -59,27 +57,27 @@ import {
   getUserStatus,
   getUserGender,
   getUserDepartment
-} from "@/api/modules/user";
+} from "@/api/modules/user"
 
-const router = useRouter();
+const router = useRouter()
 
 // 跳转详情页
 const toDetail = () => {
-  router.push(`/proTable/useTreeFilter/detail/123456?params=detail-page`);
-};
+  router.push(`/proTable/useTreeFilter/detail/123456?params=detail-page`)
+}
 
 // ProTable 实例
-const proTable = ref<ProTableInstance>();
+const proTable = ref<ProTableInstance<User.ResUserList>>()
 
 // 如果表格需要初始化请求参数，直接定义传给 ProTable(之后每次请求都会自动带上该参数，此参数更改之后也会一直带上，改变此参数会自动刷新表格数据)
-const initParam = reactive({ departmentId: "1" });
+const initParam = reactive({ departmentId: "1" })
 
 // 树形筛选切换
 const changeTreeFilter = (val: string) => {
-  ElMessage.success("请注意查看请求参数变化 🤔");
-  proTable.value!.pageable.pageNum = 1;
-  initParam.departmentId = val;
-};
+  ElMessage.success("请注意查看请求参数变化 🤔")
+  proTable.value!.pageable.pageNum = 1
+  initParam.departmentId = val
+}
 
 // 表格配置项
 const columns = reactive<ColumnProps<User.ResUserList>[]>([
@@ -109,41 +107,41 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
   },
   { prop: "createTime", label: "创建时间", width: 180 },
   { prop: "operation", label: "操作", width: 330, fixed: "right" }
-]);
+])
 
 // 删除用户信息
 const deleteAccount = async (params: User.ResUserList) => {
-  await useHandleData(deleteUser, { id: [params.id] }, `删除【${params.username}】用户`);
-  proTable.value?.getTableList();
-};
+  await useHandleData(deleteUser, { id: [params.id] }, `删除【${params.username}】用户`)
+  proTable.value?.getTableList()
+}
 
 // 重置用户密码
 const resetPass = async (params: User.ResUserList) => {
-  await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`);
-  proTable.value?.getTableList();
-};
+  await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`)
+  proTable.value?.getTableList()
+}
 
 // 导出用户列表
 const downloadFile = async () => {
   ElMessageBox.confirm("确认导出用户数据?", "温馨提示", { type: "warning" }).then(() =>
     useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam)
-  );
-};
+  )
+}
 
 // 批量添加用户
-const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null);
+const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null)
 const batchAdd = () => {
   const params = {
     title: "用户",
     tempApi: exportUserInfo,
     importApi: BatchAddUser,
     getTableList: proTable.value?.getTableList
-  };
-  dialogRef.value?.acceptParams(params);
-};
+  }
+  dialogRef.value?.acceptParams(params)
+}
 
 // 打开 drawer(新增、查看、编辑)
-const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null);
+const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null)
 const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
   const params = {
     title,
@@ -151,7 +149,7 @@ const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
     row: { ...row },
     api: title === "新增" ? addUser : title === "编辑" ? editUser : undefined,
     getTableList: proTable.value?.getTableList
-  };
-  drawerRef.value?.acceptParams(params);
-};
+  }
+  drawerRef.value?.acceptParams(params)
+}
 </script>

@@ -11,6 +11,7 @@ import viteCompression from "vite-plugin-compression";
 import vueSetupExtend from "unplugin-vue-setup-extend-plus/vite";
 import NextDevTools from "vite-plugin-vue-devtools";
 import { codeInspectorPlugin } from "code-inspector-plugin";
+import forkEnv from "./vitePluginDynamicConfig";
 
 /**
  * 创建 vite 插件
@@ -50,7 +51,8 @@ export const createVitePlugins = (viteEnv: ViteEnv): (PluginOption | PluginOptio
     VITE_CODEINSPECTOR &&
       codeInspectorPlugin({
         bundler: "vite"
-      })
+      }),
+    forkEnv()
   ];
 };
 

@@ -6,42 +6,42 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from "dayjs";
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
-import { randomNum } from "@/utils";
+import dayjs from "dayjs"
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
+import { randomNum } from "@/utils"
 
 const initDate = (): string[] => {
-  const dateList: string[] = [];
-  let startDate = dayjs();
-  const endDate = startDate.add(30, "day");
+  const dateList: string[] = []
+  let startDate = dayjs()
+  const endDate = startDate.add(30, "day")
   while (startDate.isBefore(endDate)) {
-    const month = startDate.format("MM");
-    const day = startDate.format("DD");
-    dateList.push(`${month}/${day}`);
-    startDate = startDate.add(1, "day");
+    const month = startDate.format("MM")
+    const day = startDate.format("DD")
+    dateList.push(`${month}/${day}`)
+    startDate = startDate.add(1, "day")
   }
-  return dateList;
-};
+  return dateList
+}
 
 const data = {
   unit: ["访问量"],
   data: new Array(31).fill("").map(val => {
-    val = randomNum(1, 200000);
-    return val;
+    val = randomNum(1, 200000)
+    return val
   })
-};
+}
 
 const option: ECOption = {
   tooltip: {
     trigger: "axis",
     confine: true,
     formatter: params => {
-      let tipData = (params as { name: string; value: string }[])[0];
+      let tipData = (params as { name: string; value: string }[])[0]
       let html = `<div class="line-chart-bg">
                         <span style="">${tipData.name} <i >${tipData.value}</i> 人次访问</span>
-                    </div>`;
-      return html;
+                    </div>`
+      return html
     },
     backgroundColor: "transparent",
     borderColor: "transparent",
@@ -73,7 +73,7 @@ const option: ECOption = {
         padding: 0,
         fontSize: 12,
         formatter: function (data) {
-          return data;
+          return data
         }
       },
       splitLine: { show: false, lineStyle: { color: "#192a44" } },
@@ -108,15 +108,15 @@ const option: ECOption = {
         padding: 0,
         formatter: function (value: string) {
           if (Number(value) >= 10000) {
-            value = Number(value) / 10000 + "w";
+            value = Number(value) / 10000 + "w"
           }
-          return value;
+          return value
         }
       },
       axisTick: {
         show: false
       }
-    };
+    }
   }),
   series: data.data.map(() => {
     return {
@@ -156,9 +156,9 @@ const option: ECOption = {
         shadowBlur: 20
       },
       data: data.data
-    };
+    }
   })
-};
+}
 </script>
 
 <style lang="scss" scoped>

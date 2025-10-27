@@ -16,8 +16,7 @@
             message: 'Please input correct email address',
             trigger: ['blur', 'change']
           }
-        ]"
-      >
+        ]">
         <el-input v-model="dynamicValidateForm.email" />
       </el-form-item>
       <el-form-item
@@ -29,8 +28,7 @@
           required: true,
           message: 'domain can not be null',
           trigger: 'blur'
-        }"
-      >
+        }">
         <el-input v-model="domain.value">
           <template #append>
             <el-button type="danger" plain class="mt-2" @click.prevent="removeDomain(domain)"> Delete </el-button>
@@ -46,13 +44,13 @@
 </template>
 
 <script setup lang="ts" name="dynamicForm">
-import { reactive, ref } from "vue";
-import type { FormInstance } from "element-plus";
+import { reactive, ref } from "vue"
+import type { FormInstance } from "element-plus"
 
-const formRef = ref<FormInstance>();
+const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<{
-  domains: DomainItem[];
-  email: string;
+  domains: DomainItem[]
+  email: string
 }>({
   domains: [
     {
@@ -61,42 +59,42 @@ const dynamicValidateForm = reactive<{
     }
   ],
   email: ""
-});
+})
 
 interface DomainItem {
-  key: number;
-  value: string;
+  key: number
+  value: string
 }
 
 const removeDomain = (item: DomainItem) => {
-  const index = dynamicValidateForm.domains.indexOf(item);
+  const index = dynamicValidateForm.domains.indexOf(item)
   if (index !== -1) {
-    dynamicValidateForm.domains.splice(index, 1);
+    dynamicValidateForm.domains.splice(index, 1)
   }
-};
+}
 
 const addDomain = () => {
   dynamicValidateForm.domains.push({
     key: Date.now(),
     value: ""
-  });
-};
+  })
+}
 
 const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
+  if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
+      console.log("submit!")
     } else {
-      console.log("error submit!", fields);
+      console.log("error submit!", fields)
     }
-  });
-};
+  })
+}
 
 const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.resetFields();
-};
+  if (!formEl) return
+  formEl.resetFields()
+}
 </script>
 
 <style scoped lang="scss">

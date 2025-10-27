@@ -6,13 +6,13 @@
 </template>
 
 <script setup lang="ts">
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
 
 interface ChartProp {
-  value: number;
-  name: string;
-  percentage: string;
+  value: number
+  name: string
+  percentage: string
 }
 
 let data: ChartProp[] = [
@@ -22,9 +22,9 @@ let data: ChartProp[] = [
   { value: 310, name: "30 - 40岁", percentage: "24%" },
   { value: 250, name: "40 - 60岁", percentage: "20%" },
   { value: 260, name: "60岁以上", percentage: "20%" }
-];
+]
 
-const colors = ["#F6C95C", "#EF7D33", "#1F9393", "#184EA1", "#81C8EF", "#9270CA"];
+const colors = ["#F6C95C", "#EF7D33", "#1F9393", "#184EA1", "#81C8EF", "#9270CA"]
 
 const option: ECOption = {
   color: colors,
@@ -40,11 +40,11 @@ const option: ECOption = {
     itemGap: 15,
     itemWidth: 14,
     formatter: function (name: string) {
-      let text = "";
+      let text = ""
       data.forEach((val: ChartProp) => {
-        if (val.name === name) text = " " + name + "　 " + val.percentage;
-      });
-      return text;
+        if (val.name === name) text = " " + name + "　 " + val.percentage
+      })
+      return text
     },
     textStyle: { color: "#fff" }
   },
@@ -63,7 +63,7 @@ const option: ECOption = {
         show: true,
         color: "#fff",
         formatter: function (params) {
-          return (params.data as ChartProp).percentage;
+          return (params.data as ChartProp).percentage
         },
         rich: {
           b: {
@@ -88,7 +88,7 @@ const option: ECOption = {
             borderColor: colors[index],
             borderRadius: 10
           }
-        };
+        }
       })
     },
     {
@@ -118,7 +118,7 @@ const option: ECOption = {
       ]
     }
   ]
-};
+}
 </script>
 <style lang="scss" scoped>
 .echarts {

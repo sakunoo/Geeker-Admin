@@ -46,8 +46,8 @@
 </template>
 
 <script setup lang="ts" name="basicForm">
-import { ElMessage } from "element-plus";
-import { reactive } from "vue";
+import { ElMessage } from "element-plus"
+import { reactive } from "vue"
 
 // do not use same name with ref
 const formData = reactive({
@@ -59,11 +59,11 @@ const formData = reactive({
   type: [],
   resource: "",
   desc: ""
-});
+})
 
 const onSubmit = () => {
-  ElMessage.success("提交的数据为 : " + JSON.stringify(formData));
-};
+  ElMessage.success("提交的数据为 : " + JSON.stringify(formData))
+}
 </script>
 
 <style scoped lang="scss">

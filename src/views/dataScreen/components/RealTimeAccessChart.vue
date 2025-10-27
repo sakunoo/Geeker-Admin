@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ref } from "vue"
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
-const actualTotal = ref("216908");
+const actualTotal = ref("216908")
 const option = {
   title: [
     {
@@ -173,7 +173,7 @@ const option = {
       color: "#31d8d5"
     }
   ]
-} as ECOption;
+} as ECOption
 </script>
 
 <style lang="scss" scoped>

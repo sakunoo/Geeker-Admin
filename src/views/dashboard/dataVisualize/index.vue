@@ -74,11 +74,11 @@
 </template>
 
 <script setup lang="ts" name="dataVisualize">
-import { ref } from "vue";
-import Pie from "./components/pie.vue";
-import Curve from "./components/curve.vue";
+import { ref } from "vue"
+import Pie from "./components/pie.vue"
+import Curve from "./components/curve.vue"
 
-const tabActive = ref(1);
+const tabActive = ref(1)
 
 const tab = [
   { label: "未来7日", name: 1 },
@@ -87,7 +87,7 @@ const tab = [
   { label: "近三月", name: 4 },
   { label: "近半年", name: 5 },
   { label: "近一年", name: 6 }
-];
+]
 </script>
 
 <style scoped lang="scss">

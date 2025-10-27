@@ -6,15 +6,15 @@
 </template>
 
 <script setup lang="ts">
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
 
 interface ChartProp {
-  label: string;
-  value: string[];
+  label: string
+  value: string[]
 }
 
-const gradientColors = ["rgba(254, 219, 101,0.1)", "rgba(0, 122, 254,0.1)", "rgba(255, 75, 122, 0.1)"];
+const gradientColors = ["rgba(254, 219, 101,0.1)", "rgba(0, 122, 254,0.1)", "rgba(255, 75, 122, 0.1)"]
 const annualData = [
   {
     label: new Date().getFullYear() - 2 + "年",
@@ -28,14 +28,14 @@ const annualData = [
     label: new Date().getFullYear() + "年",
     value: ["548", "259", "113", "90", "69", "512", "23", "49", "28", "420", "313", "156"]
   }
-];
+]
 
 const data = {
   data: annualData,
   unit: annualData.map(val => val.label),
   columns: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
   colors: ["#FFA600", "#007AFE", "#FF4B7A"]
-};
+}
 
 const option: ECOption = {
   tooltip: {
@@ -47,7 +47,7 @@ const option: ECOption = {
     padding: 0,
     backgroundColor: "transparent",
     formatter: (params: any) => {
-      let str = "";
+      let str = ""
       params.forEach((val: { color: string; seriesName: string; data: number }) => {
         str += `
           <div class="year-item">
@@ -55,8 +55,8 @@ const option: ECOption = {
             <span class="year-name">${val.seriesName}</span>
             <span class="year-value">${val.data >= 10000 ? (val.data / 10000).toFixed(2) + "w" : val.data}</span>
           </div>
-          `;
-      });
+          `
+      })
       const dom = `
                     <div class="annual-tooltip">
                       <span class="annual-month">${params[0].dataIndex + 1}月</span>
@@ -64,8 +64,8 @@ const option: ECOption = {
                         ${str}
                       </div>
                     </div>
-                  `;
-      return dom;
+                  `
+      return dom
     }
   },
   legend: {
@@ -102,7 +102,7 @@ const option: ECOption = {
         padding: 0,
         fontSize: 12,
         formatter: function (data) {
-          return data;
+          return data
         }
       },
       splitLine: {
@@ -190,9 +190,9 @@ const option: ECOption = {
         shadowBlur: 20
       },
       data: val.value
-    };
+    }
   })
-};
+}
 </script>
 <style lang="scss" scoped>
 .echarts {

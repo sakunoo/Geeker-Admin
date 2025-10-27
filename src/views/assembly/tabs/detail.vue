@@ -7,13 +7,13 @@
 </template>
 
 <script setup lang="ts" name="tabsDetail">
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import { useTabsStore } from "@/stores/modules/tabs";
+import { ref } from "vue"
+import { useRoute } from "vue-router"
+import { useTabsStore } from "@/stores/modules/tabs"
 
-const route = useRoute();
-const tabStore = useTabsStore();
-tabStore.setTabsTitle(`No.${route.params.id} - ${route.meta.title}`);
+const route = useRoute()
+const tabStore = useTabsStore()
+tabStore.setTabsTitle(`No.${route.params.id} - ${route.meta.title}`)
 
-const value = ref("");
+const value = ref("")
 </script>

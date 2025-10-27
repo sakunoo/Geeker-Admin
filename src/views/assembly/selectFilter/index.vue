@@ -11,14 +11,14 @@
 </template>
 
 <script setup lang="ts" name="selectFilter">
-import { ref } from "vue";
-import SelectFilter from "@/components/SelectFilter/index.vue";
+import { ref } from "vue"
+import SelectFilter from "@/components/SelectFilter/index.vue"
 
-const filterResult = ref({ state: "1", type: ["1", "3"] });
+const filterResult = ref({ state: "1", type: ["1", "3"] })
 
 const changeFilter = (val: typeof filterResult.value) => {
-  filterResult.value = val;
-};
+  filterResult.value = val
+}
 
 const filterData = [
   {
@@ -83,7 +83,7 @@ const filterData = [
       }
     ]
   }
-];
+]
 </script>
 
 <style scoped lang="scss">

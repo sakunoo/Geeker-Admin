@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts" name="radarChart">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const option: ECOption = {
   title: {
@@ -48,7 +48,7 @@ const option: ECOption = {
       ]
     }
   ]
-};
+}
 </script>
 
 <style scoped lang="scss">

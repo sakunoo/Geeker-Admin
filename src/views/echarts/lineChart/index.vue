@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts" name="lineChart">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const option: ECOption = {
   title: {
@@ -115,7 +115,7 @@ const option: ECOption = {
       data: [820, 932, 901, 934, 1290, 1330, 1320]
     }
   ]
-};
+}
 </script>
 
 <style scoped lang="scss">

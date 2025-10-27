@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts" name="403">
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { useRouter } from "vue-router"
+const router = useRouter()
 </script>
 
 <style scoped lang="scss">

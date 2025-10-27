@@ -6,8 +6,7 @@
       label="name"
       :request-api="getUserDepartment"
       :default-value="treeFilterValues.departmentId"
-      @change="changeTreeFilter"
-    />
+      @change="changeTreeFilter" />
     <div class="table-box">
       <div class="card mb10 pt0 pb0">
         <SelectFilter :data="selectFilterData" :default-values="selectFilterValues" @change="changeSelectFilter" />
@@ -17,8 +16,7 @@
         highlight-current-row
         :columns="columns"
         :request-api="getUserList"
-        :init-param="Object.assign(treeFilterValues, selectFilterValues)"
-      >
+        :init-param="Object.assign(treeFilterValues, selectFilterValues)">
         <!-- 表格 header 按钮 -->
         <template #tableHeader>
           <el-button type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
@@ -40,19 +38,19 @@
   </div>
 </template>
 <script setup lang="ts" name="useSelectFilter">
-import { ref, reactive, onMounted, watch } from "vue";
-import { User } from "@/api/interface";
-import { ElMessage, ElMessageBox } from "element-plus";
-import { useHandleData } from "@/hooks/useHandleData";
-import { useDownload } from "@/hooks/useDownload";
-import { genderType, userStatus } from "@/utils/dict";
-import ProTable from "@/components/ProTable/index.vue";
-import TreeFilter from "@/components/TreeFilter/index.vue";
-import ImportExcel from "@/components/ImportExcel/index.vue";
-import UserDrawer from "@/views/proTable/components/UserDrawer.vue";
-import SelectFilter from "@/components/SelectFilter/index.vue";
-import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, Pointer, Download, Upload, View, Refresh } from "@element-plus/icons-vue";
+import { ref, reactive, onMounted, watch } from "vue"
+import { User } from "@/api/interface"
+import { ElMessage, ElMessageBox } from "element-plus"
+import { useHandleData } from "@/hooks/useHandleData"
+import { useDownload } from "@/hooks/useDownload"
+import { genderType, userStatus } from "@/utils/dict"
+import ProTable from "@/components/ProTable/index.vue"
+import TreeFilter from "@/components/TreeFilter/index.vue"
+import ImportExcel from "@/components/ImportExcel/index.vue"
+import UserDrawer from "@/views/proTable/components/UserDrawer.vue"
+import SelectFilter from "@/components/SelectFilter/index.vue"
+import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface"
+import { CirclePlus, Delete, EditPen, Pointer, Download, Upload, View, Refresh } from "@element-plus/icons-vue"
 import {
   getUserList,
   deleteUser,
@@ -63,10 +61,10 @@ import {
   BatchAddUser,
   getUserDepartment,
   getUserRole
-} from "@/api/modules/user";
+} from "@/api/modules/user"
 
 // ProTable 实例
-const proTable = ref<ProTableInstance>();
+const proTable = ref<ProTableInstance<User.ResUserList>>()
 
 // 表格配置项
 const columns = reactive<ColumnProps<User.ResUserList>[]>([
@@ -80,7 +78,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
   { prop: "status", label: "用户状态", width: 120, sortable: true, tag: true, enum: userStatus },
   { prop: "createTime", label: "创建时间", width: 180, sortable: true },
   { prop: "operation", label: "操作", width: 330, fixed: "right" }
-]);
+])
 
 // selectFilter 数据（用户角色为后台数据）
 const selectFilterData = reactive([
@@ -102,75 +100,75 @@ const selectFilterData = reactive([
     multiple: true,
     options: []
   }
-]);
+] as any)
 
 // 获取用户角色字典
-onMounted(() => getUserRoleDict());
+onMounted(() => getUserRoleDict())
 const getUserRoleDict = async () => {
-  const { data } = await getUserRole();
-  selectFilterData[1].options = data as any;
-};
+  const { data } = await getUserRole()
+  selectFilterData[1].options = data as any
+}
 
 // 默认 selectFilter 参数
-const selectFilterValues = ref({ userStatus: "2", userRole: ["1", "3"] });
+const selectFilterValues = ref({ userStatus: "2", userRole: ["1", "3"] })
 const changeSelectFilter = (value: typeof selectFilterValues.value) => {
-  ElMessage.success("请注意查看请求参数变化 🤔");
-  proTable.value!.pageable.pageNum = 1;
-  selectFilterValues.value = value;
-};
+  ElMessage.success("请注意查看请求参数变化 🤔")
+  proTable.value!.pageable.pageNum = 1
+  selectFilterValues.value = value
+}
 
 // 默认 treeFilter 参数
-const treeFilterValues = reactive({ departmentId: ["11"] });
+const treeFilterValues = reactive({ departmentId: ["11"] })
 const changeTreeFilter = (val: string[]) => {
-  ElMessage.success("请注意查看请求参数变化 🤔");
-  proTable.value!.pageable.pageNum = 1;
-  treeFilterValues.departmentId = val;
-};
+  ElMessage.success("请注意查看请求参数变化 🤔")
+  proTable.value!.pageable.pageNum = 1
+  treeFilterValues.departmentId = val
+}
 
 // 选择行
 const setCurrent = () => {
-  proTable.value!.radio = proTable.value?.tableData[3].id;
-  proTable.value?.element?.setCurrentRow(proTable.value?.tableData[3]);
-};
+  proTable.value!.radio = proTable.value?.tableData[3].id
+  proTable.value?.element?.setCurrentRow(proTable.value?.tableData[3])
+}
 
 watch(
   () => proTable.value?.radio,
   () => proTable.value?.radio && ElMessage.success(`选中 id 为【${proTable.value?.radio}】的数据`)
-);
+)
 
 // 删除用户信息
 const deleteAccount = async (params: User.ResUserList) => {
-  await useHandleData(deleteUser, { id: [params.id] }, `删除【${params.username}】用户`);
-  proTable.value?.getTableList();
-};
+  await useHandleData(deleteUser, { id: [params.id] }, `删除【${params.username}】用户`)
+  proTable.value?.getTableList()
+}
 
 // 重置用户密码
 const resetPass = async (params: User.ResUserList) => {
-  await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`);
-  proTable.value?.getTableList();
-};
+  await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`)
+  proTable.value?.getTableList()
+}
 
 // 导出用户列表
 const downloadFile = async () => {
   ElMessageBox.confirm("确认导出用户数据?", "温馨提示", { type: "warning" }).then(() =>
     useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam)
-  );
-};
+  )
+}
 
 // 批量添加用户
-const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null);
+const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null)
 const batchAdd = () => {
   const params = {
     title: "用户",
     tempApi: exportUserInfo,
     importApi: BatchAddUser,
     getTableList: proTable.value?.getTableList
-  };
-  dialogRef.value?.acceptParams(params);
-};
+  }
+  dialogRef.value?.acceptParams(params)
+}
 
 // 打开 drawer(新增、查看、编辑)
-const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null);
+const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null)
 const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
   const params = {
     title,
@@ -178,7 +176,7 @@ const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
     row: { ...row },
     api: title === "新增" ? addUser : title === "编辑" ? editUser : undefined,
     getTableList: proTable.value?.getTableList
-  };
-  drawerRef.value?.acceptParams(params);
-};
+  }
+  drawerRef.value?.acceptParams(params)
+}
 </script>

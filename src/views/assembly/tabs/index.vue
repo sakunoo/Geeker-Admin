@@ -28,70 +28,70 @@
 </template>
 
 <script setup lang="ts" name="tabs">
-import { inject, nextTick, ref } from "vue";
-import { HOME_URL } from "@/config";
-import { useRoute, useRouter } from "vue-router";
-import { useTabsStore } from "@/stores/modules/tabs";
-import { useGlobalStore } from "@/stores/modules/global";
-import { useKeepAliveStore } from "@/stores/modules/keepAlive";
-import { Refresh, FullScreen, Remove, CircleClose, FolderDelete, Promotion } from "@element-plus/icons-vue";
-import { ElMessage } from "element-plus";
+import { inject, nextTick, ref } from "vue"
+import { HOME_URL } from "@/config"
+import { useRoute, useRouter } from "vue-router"
+import { useTabsStore } from "@/stores/modules/tabs"
+import { useGlobalStore } from "@/stores/modules/global"
+import { useKeepAliveStore } from "@/stores/modules/keepAlive"
+import { Refresh, FullScreen, Remove, CircleClose, FolderDelete, Promotion } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
 
-const route = useRoute();
-const router = useRouter();
-const tabStore = useTabsStore();
-const globalStore = useGlobalStore();
-const keepAliveStore = useKeepAliveStore();
+const route = useRoute()
+const router = useRouter()
+const tabStore = useTabsStore()
+const globalStore = useGlobalStore()
+const keepAliveStore = useKeepAliveStore()
 
 // 刷新当前页
-const refreshCurrentPage: Function = inject("refresh") as Function;
+const refreshCurrentPage: Function = inject("refresh") as Function
 const refresh = () => {
   setTimeout(() => {
-    route.meta.isKeepAlive && keepAliveStore.removeKeepAliveName(route.fullPath as string);
-    refreshCurrentPage(false);
+    route.meta.isKeepAlive && keepAliveStore.removeKeepAliveName(route.fullPath as string)
+    refreshCurrentPage(false)
     nextTick(() => {
-      route.meta.isKeepAlive && keepAliveStore.addKeepAliveName(route.fullPath as string);
-      refreshCurrentPage(true);
-    });
-  }, 0);
-};
+      route.meta.isKeepAlive && keepAliveStore.addKeepAliveName(route.fullPath as string)
+      refreshCurrentPage(true)
+    })
+  }, 0)
+}
 
 // 设置 Tab 标题
-const tabsTitle = ref("");
+const tabsTitle = ref("")
 const editTabsTitle = () => {
-  if (!tabsTitle.value) return ElMessage.warning("请输入标题");
-  tabStore.setTabsTitle(tabsTitle.value);
-};
+  if (!tabsTitle.value) return ElMessage.warning("请输入标题")
+  tabStore.setTabsTitle(tabsTitle.value)
+}
 
 // 当前页全屏
 const maximize = () => {
-  globalStore.setGlobalState("maximize", !globalStore.maximize);
-};
+  globalStore.setGlobalState("maximize", !globalStore.maximize)
+}
 
 // 关闭当前页
 const closeCurrentTab = () => {
-  if (route.meta.isAffix) return;
-  tabStore.removeTabs(route.fullPath);
-};
+  if (route.meta.isAffix) return
+  tabStore.removeTabs(route.fullPath)
+}
 
 // 关闭其他
 const closeOtherTab = () => {
-  tabStore.closeMultipleTab(route.fullPath);
-};
+  tabStore.closeMultipleTab(route.fullPath)
+}
 
 // 关闭两侧
 const closeOnSide = (direction: "left" | "right") => {
-  tabStore.closeTabsOnSide(route.fullPath, direction);
-};
+  tabStore.closeTabsOnSide(route.fullPath, direction)
+}
 
 // 全部关闭
 const closeAllTab = () => {
-  tabStore.closeMultipleTab();
-  router.push(HOME_URL);
-};
+  tabStore.closeMultipleTab()
+  router.push(HOME_URL)
+}
 
 // 打开详情页
 const handleToDetail = (id: string) => {
-  router.push(`/assembly/tabs/detail/${id}`);
-};
+  router.push(`/assembly/tabs/detail/${id}`)
+}
 </script>

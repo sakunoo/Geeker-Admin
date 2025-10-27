@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts" name="copyDirect">
-import { ref } from "vue";
+import { ref } from "vue"
 
-const data = ref<string>("我是被复制的内容 🍒 🍉 🍊");
+const data = ref<string>("我是被复制的内容 🍒 🍉 🍊")
 </script>
 
 <style scoped lang="scss">

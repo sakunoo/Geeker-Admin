@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts" name="cure">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const curveData = [
   { value: 30, spotName: "掘金" },
@@ -18,7 +18,7 @@ const curveData = [
   { value: 55, spotName: "简书" },
   { value: 80, spotName: "StackOverFlow" },
   { value: 50, spotName: "博客园" }
-];
+]
 
 const option: ECOption = {
   tooltip: {
@@ -33,8 +33,8 @@ const option: ECOption = {
       color:#fff; background: #6B9DFE;border-radius: 4px;font-size:14px; ">
         <div style="display: flex; align-items: center;"> <div style="width:5px;height:5px;background:#ffffff;border-radius: 50%;margin-right:5px"></div>平台 :  ${p[0].name}</div>
         <div style="display: flex;align-items: center;"><div style="width:5px;height:5px;background:#ffffff;border-radius: 50%;margin-right:5px"></div>数据量 :  ${p[0].value}</div>
-      </div>`;
-      return dom;
+      </div>`
+      return dom
     }
   },
   toolbox: {
@@ -73,7 +73,7 @@ const option: ECOption = {
       data: curveData.map((val: any) => {
         return {
           value: val.spotName
-        };
+        }
       }),
       axisTick: {
         show: false
@@ -84,8 +84,8 @@ const option: ECOption = {
         color: "#a1a1a1",
         fontSize: 14,
         formatter: function (name: string) {
-          undefined;
-          return name.length > 8 ? name.slice(0, 8) + "..." : name;
+          undefined
+          return name.length > 8 ? name.slice(0, 8) + "..." : name
         }
       },
       axisLine: {
@@ -116,11 +116,11 @@ const option: ECOption = {
         fontWeight: 400,
         formatter: function (value: number) {
           if (value === 0) {
-            return value + "";
+            return value + ""
           } else if (value >= 10000) {
-            return value / 10000 + "w";
+            return value / 10000 + "w"
           }
-          return value + "";
+          return value + ""
         }
       }
     }
@@ -132,7 +132,7 @@ const option: ECOption = {
       data: curveData.map((val: any) => {
         return {
           value: val.value
-        };
+        }
       }),
       barWidth: "45px",
       itemStyle: {
@@ -146,7 +146,7 @@ const option: ECOption = {
       }
     }
   ]
-};
+}
 </script>
 
 <style lang="scss" scoped>

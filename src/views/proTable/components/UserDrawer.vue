@@ -7,8 +7,7 @@
       :rules="rules"
       :disabled="drawerProps.isView"
       :model="drawerProps.row"
-      :hide-required-asterisk="drawerProps.isView"
-    >
+      :hide-required-asterisk="drawerProps.isView">
       <el-form-item label="用户头像" prop="avatar">
         <UploadImg v-model:image-url="drawerProps.row!.avatar" width="135px" height="135px" :file-size="3">
           <template #empty>
@@ -53,12 +52,12 @@
 </template>
 
 <script setup lang="ts" name="UserDrawer">
-import { ref, reactive } from "vue";
-import { genderType } from "@/utils/dict";
-import { ElMessage, FormInstance } from "element-plus";
-import { User } from "@/api/interface";
-import UploadImg from "@/components/Upload/Img.vue";
-import UploadImgs from "@/components/Upload/Imgs.vue";
+import { ref, reactive } from "vue"
+import { genderType } from "@/utils/dict"
+import { ElMessage, FormInstance } from "element-plus"
+import { User } from "@/api/interface"
+import UploadImg from "@/components/Upload/Img.vue"
+import UploadImgs from "@/components/Upload/Imgs.vue"
 
 const rules = reactive({
   avatar: [{ required: true, message: "请上传用户头像" }],
@@ -68,46 +67,46 @@ const rules = reactive({
   idCard: [{ required: true, message: "请填写身份证号" }],
   email: [{ required: true, message: "请填写邮箱" }],
   address: [{ required: true, message: "请填写居住地址" }]
-});
+})
 
 interface DrawerProps {
-  title: string;
-  isView: boolean;
-  row: Partial<User.ResUserList>;
-  api?: (params: any) => Promise<any>;
-  getTableList?: () => void;
+  title: string
+  isView: boolean
+  row: Partial<User.ResUserList>
+  api?: (params: any) => Promise<any>
+  getTableList?: () => void
 }
 
-const drawerVisible = ref(false);
+const drawerVisible = ref(false)
 const drawerProps = ref<DrawerProps>({
   isView: false,
   title: "",
   row: {}
-});
+})
 
 // 接收父组件传过来的参数
 const acceptParams = (params: DrawerProps) => {
-  drawerProps.value = params;
-  drawerVisible.value = true;
-};
+  drawerProps.value = params
+  drawerVisible.value = true
+}
 
 // 提交数据（新增/编辑）
-const ruleFormRef = ref<FormInstance>();
+const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
   ruleFormRef.value!.validate(async valid => {
-    if (!valid) return;
+    if (!valid) return
     try {
-      await drawerProps.value.api!(drawerProps.value.row);
-      ElMessage.success({ message: `${drawerProps.value.title}用户成功！` });
-      drawerProps.value.getTableList!();
-      drawerVisible.value = false;
+      await drawerProps.value.api!(drawerProps.value.row)
+      ElMessage.success({ message: `${drawerProps.value.title}用户成功！` })
+      drawerProps.value.getTableList!()
+      drawerVisible.value = false
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  });
-};
+  })
+}
 
 defineExpose({
   acceptParams
-});
+})
 </script>

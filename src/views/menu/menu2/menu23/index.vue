@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts" name="menu23">
-import { ref } from "vue";
-const value = ref("");
+import { ref } from "vue"
+const value = ref("")
 </script>
 
 <style scoped lang="scss">

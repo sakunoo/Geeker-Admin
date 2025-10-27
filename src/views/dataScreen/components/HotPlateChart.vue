@@ -11,15 +11,15 @@
 </template>
 
 <script setup lang="ts">
-import ECharts from "@/components/ECharts/index.vue";
-import { ECOption } from "@/components/ECharts/config";
-import { ranking1, ranking2, ranking3, ranking4 } from "../assets/ranking-icon";
+import ECharts from "@/components/ECharts/index.vue"
+import { ECOption } from "@/components/ECharts/config"
+import { ranking1, ranking2, ranking3, ranking4 } from "../assets/ranking-icon"
 
 interface ChartProp {
-  name: string;
-  value: number;
-  percentage: string;
-  maxValue: number;
+  name: string
+  value: number
+  percentage: string
+  maxValue: number
 }
 
 const data = [
@@ -53,9 +53,9 @@ const data = [
     percentage: "30%",
     maxValue: 100000
   }
-];
+]
 
-const colors = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
+const colors = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"]
 
 const option: ECOption = {
   grid: {
@@ -103,9 +103,9 @@ const option: ECOption = {
       axisLabel: {
         color: "#fff",
         formatter: (value: string) => {
-          let str = value.length > 6 ? value.slice(0, 6) + "..." : value;
-          let index = data.map((item: ChartProp) => item.name).indexOf(value) + 1;
-          return ["{" + (index > 3 ? "lg" : "lg" + index) + "|NO." + index + "}", "{title|" + str + "}"].join(" ");
+          let str = value.length > 6 ? value.slice(0, 6) + "..." : value
+          let index = data.map((item: ChartProp) => item.name).indexOf(value) + 1
+          return ["{" + (index > 3 ? "lg" : "lg" + index) + "|NO." + index + "}", "{title|" + str + "}"].join(" ")
         },
         rich: {
           lg1: {
@@ -167,7 +167,7 @@ const option: ECOption = {
         color: "#fff",
         margin: 20,
         formatter: (value: number) => {
-          return value >= 10000 ? (value / 10000).toFixed(2) + "w" : value + "";
+          return value >= 10000 ? (value / 10000).toFixed(2) + "w" : value + ""
         }
       },
       axisLine: {
@@ -192,8 +192,8 @@ const option: ECOption = {
       itemStyle: {
         borderRadius: 30,
         color: function (params) {
-          let num = colors.length;
-          return colors[params.dataIndex % num];
+          let num = colors.length
+          return colors[params.dataIndex % num]
         }
       },
       label: {
@@ -202,7 +202,7 @@ const option: ECOption = {
         lineHeight: 14,
         color: "#fff",
         formatter: params => {
-          return (params.data as ChartProp).percentage;
+          return (params.data as ChartProp).percentage
         }
       }
     },
@@ -211,8 +211,8 @@ const option: ECOption = {
       type: "bar",
       yAxisIndex: 1,
       data: data.map((val: ChartProp) => {
-        if (!val.maxValue) return 5;
-        return val.maxValue;
+        if (!val.maxValue) return 5
+        return val.maxValue
       }),
       barWidth: 18,
       itemStyle: {
@@ -224,7 +224,7 @@ const option: ECOption = {
       silent: true
     }
   ]
-};
+}
 </script>
 <style lang="scss" scoped>
 .echarts {

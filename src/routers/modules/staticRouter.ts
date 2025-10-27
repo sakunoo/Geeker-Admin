@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from "vue-router";
-import { HOME_URL, LOGIN_URL } from "@/config";
+import { RouteRecordRaw } from "vue-router"
+import { HOME_URL, LOGIN_URL } from "@/config"
 
 /**
  * staticRouter (静态路由)
@@ -25,7 +25,7 @@ export const staticRouter: RouteRecordRaw[] = [
     redirect: HOME_URL,
     children: []
   }
-];
+]
 
 /**
  * errorRouter (错误页面路由)
@@ -60,4 +60,4 @@ export const errorRouter = [
     path: "/:pathMatch(.*)*",
     component: () => import("@/components/ErrorMessage/404.vue")
   }
-];
+]

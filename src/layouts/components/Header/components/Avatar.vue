@@ -24,17 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { LOGIN_URL } from "@/config";
-import { useRouter } from "vue-router";
-import { logoutApi } from "@/api/modules/login";
-import { useUserStore } from "@/stores/modules/user";
-import { ElMessageBox, ElMessage } from "element-plus";
-import InfoDialog from "./InfoDialog.vue";
-import PasswordDialog from "./PasswordDialog.vue";
+import { ref } from "vue"
+import { LOGIN_URL } from "@/config"
+import { useRouter } from "vue-router"
+import { logoutApi } from "@/api/modules/login"
+import { useUserStore } from "@/stores/modules/user"
+import { ElMessageBox, ElMessage } from "element-plus"
+import InfoDialog from "./InfoDialog.vue"
+import PasswordDialog from "./PasswordDialog.vue"
 
-const router = useRouter();
-const userStore = useUserStore();
+const router = useRouter()
+const userStore = useUserStore()
 
 // 退出登录
 const logout = () => {
@@ -44,24 +44,24 @@ const logout = () => {
     type: "warning"
   }).then(async () => {
     // 1.执行退出登录接口
-    await logoutApi();
+    await logoutApi()
 
     // 2.清除 Token
-    userStore.setToken("");
+    userStore.setToken("")
 
     // 3.重定向到登陆页
-    router.replace(LOGIN_URL);
-    ElMessage.success("退出登录成功！");
-  });
-};
+    router.replace(LOGIN_URL)
+    ElMessage.success("退出登录成功！")
+  })
+}
 
 // 打开修改密码和个人信息弹窗
-const infoRef = ref<InstanceType<typeof InfoDialog> | null>(null);
-const passwordRef = ref<InstanceType<typeof PasswordDialog> | null>(null);
+const infoRef = ref<InstanceType<typeof InfoDialog> | null>(null)
+const passwordRef = ref<InstanceType<typeof PasswordDialog> | null>(null)
 const openDialog = (ref: string) => {
-  if (ref == "infoRef") infoRef.value?.openDialog();
-  if (ref == "passwordRef") passwordRef.value?.openDialog();
-};
+  if (ref == "infoRef") infoRef.value?.openDialog()
+  if (ref == "passwordRef") passwordRef.value?.openDialog()
+}
 </script>
 
 <style scoped lang="scss">

@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts" name="selectIcon">
-import { ref } from "vue";
-import SelectIcon from "@/components/SelectIcon/index.vue";
-const iconValue = ref("");
+import { ref } from "vue"
+import SelectIcon from "@/components/SelectIcon/index.vue"
+const iconValue = ref("")
 </script>
 
 <style scoped lang="scss">

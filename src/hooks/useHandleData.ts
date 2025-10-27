@@ -1,5 +1,5 @@
-import { ElMessageBox, ElMessage } from "element-plus";
-import { HandleData } from "./interface";
+import { ElMessageBox, ElMessage } from "element-plus"
+import { HandleData } from "./interface"
 
 /**
  * @description 操作单条数据信息 (二次确认【删除、禁用、启用、重置密码】)
@@ -23,16 +23,16 @@ export const useHandleData = (
       draggable: true
     })
       .then(async () => {
-        const res = await api(params);
-        if (!res) return reject(false);
+        const res = await api(params)
+        if (!res) return reject(false)
         ElMessage({
           type: "success",
           message: `${message}成功!`
-        });
-        resolve(true);
+        })
+        resolve(true)
       })
       .catch(() => {
         // cancel operation
-      });
-  });
-};
+      })
+  })
+}

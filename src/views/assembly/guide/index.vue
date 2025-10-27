@@ -4,8 +4,7 @@
     <el-alert
       title="引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于 driver.js."
       type="warning"
-      :closable="false"
-    />
+      :closable="false" />
     <div id="Geeker">
       <el-button type="primary" @click.prevent.stop="driverObj.drive()"> 打开引导页 🤹‍♂️ </el-button>
     </div>
@@ -13,8 +12,8 @@
 </template>
 
 <script setup lang="ts" name="guide">
-import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
+import { driver } from "driver.js"
+import "driver.js/dist/driver.css"
 
 const driverObj = driver({
   allowClose: true,
@@ -87,7 +86,7 @@ const driverObj = driver({
       }
     }
   ]
-});
+})
 </script>
 
 <style scoped lang="scss">

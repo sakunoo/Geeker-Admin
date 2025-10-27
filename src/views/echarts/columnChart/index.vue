@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts" name="columnChart">
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ECOption } from "@/components/ECharts/config"
+import ECharts from "@/components/ECharts/index.vue"
 
 const option: ECOption = {
   tooltip: {
@@ -131,7 +131,7 @@ const option: ECOption = {
       data: [62, 82, 91, 84, 109, 110, 120]
     }
   ]
-};
+}
 </script>
 
 <style scoped lang="scss">
