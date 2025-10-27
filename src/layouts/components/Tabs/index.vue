@@ -82,6 +82,11 @@ const tabsDrop = () => {
   Sortable.create(document.querySelector(".el-tabs__nav") as HTMLElement, {
     draggable: ".el-tabs__item",
     animation: 300,
+    delay: 50,
+    delayOnTouchOnly: true,
+    touchStartThreshold: 3,
+    forceFallback: true,
+    fallbackTolerance: 3,
     onEnd({ newIndex, oldIndex }) {
       const tabsList = [...tabStore.tabsMenuList];
       const currRow = tabsList.splice(oldIndex as number, 1)[0];
